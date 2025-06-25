@@ -12,8 +12,8 @@ curl -fL $url -o $zip
 unzip $zip -d $dst
 rm $zip
 
-pushd $dst
+cd $dst
 tar xzf dist.tar.gz
-popd
+cd -
 
 $dst/odin-linux-amd64-nightly+2025-06-02/odin version
