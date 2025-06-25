@@ -36,7 +36,18 @@ mkdir -p wasm
 cp $(odin root)/vendor/raylib/wasm/libraylib.a wasm/
 ```
 
-Then create a minimal HTML file that loads `odin.js` and your `ball_bounce.wasm` and open it with a web browser that supports WebGL. Modern browsers do not allow loading these files directly from the filesystem, so serve them through a local HTTP server, e.g.
+Then create a minimal HTML file that loads `odin.js`, fetches the `wasm/libraylib.a` support library, and passes it to `odin.runWasm` before opening the page in a WebGL-enabled browser. A simple snippet looks like:
+
+```html
+<script>
+(async () => {
+    const lib = await fetch('wasm/libraylib.a').then(r => r.arrayBuffer()).then(b => WebAssembly.instantiate(b, {}));
+    await odin.runWasm('ball_bounce.wasm', undefined, { 'wasm/libraylib.a': lib.instance.exports });
+})();
+</script>
+```
+
+Modern browsers do not allow loading these files directly from the filesystem, so serve them through a local HTTP server, e.g.
 
 ```bash
 python3 -m http.server

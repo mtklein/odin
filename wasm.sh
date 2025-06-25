@@ -35,7 +35,11 @@ cat >ball_bounce.html <<'HTML'
 </head>
 <body>
   <script>
-    odin.runWasm('ball_bounce.wasm');
+    (async () => {
+      const libResp = await fetch('wasm/libraylib.a');
+      const raylib = await WebAssembly.instantiate(await libResp.arrayBuffer(), {});
+      await odin.runWasm('ball_bounce.wasm', undefined, { 'wasm/libraylib.a': raylib.instance.exports });
+    })();
   </script>
 </body>
 </html>
