@@ -27,7 +27,7 @@ Adjust the target architecture (`macos_arm64` or `macos_amd64`) depending on you
 To build the same project for the web you can target `js_wasm32` and produce a `.wasm` file along with the runtime JavaScript helper:
 
 ```bash
-odin build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm -no-entry-point
+odin build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm
 cp $(odin root)/core/sys/wasm/js/odin.js .
 ```
 

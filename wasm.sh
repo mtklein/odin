@@ -8,7 +8,7 @@ if ! command -v "$ODIN" >/dev/null 2>&1; then
 fi
 
 # Build the example to WebAssembly
-"$ODIN" build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm -no-entry-point
+"$ODIN" build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm
 
 # Copy the Odin runtime JavaScript helper next to the wasm file
 ODIN_ROOT=$("$ODIN" root)
