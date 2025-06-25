@@ -42,3 +42,4 @@ cat >ball_bounce.html <<'HTML'
 HTML
 
 printf '\nGenerated ball_bounce.html. Open it in a WebGL-enabled browser.\n'
+printf 'Run `python3 -m http.server` and navigate to http://localhost:8000/ball_bounce.html\n'

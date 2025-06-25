@@ -36,7 +36,12 @@ mkdir -p wasm
 cp $(odin root)/vendor/raylib/wasm/libraylib.a wasm/
 ```
 
-Then create a minimal HTML file that loads `odin.js` and your `ball_bounce.wasm` and open it with a web browser that supports WebGL.
+Then create a minimal HTML file that loads `odin.js` and your `ball_bounce.wasm` and open it with a web browser that supports WebGL. Modern browsers do not allow loading these files directly from the filesystem, so serve them through a local HTTP server, e.g.
+
+```bash
+python3 -m http.server
+```
+and visit `http://localhost:8000/ball_bounce.html`.
 
 Alternatively you can run the provided helper script which performs all of the above steps and writes the HTML file automatically:
 
