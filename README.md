@@ -24,6 +24,9 @@ Adjust the target architecture (`macos_arm64` or `macos_amd64`) depending on you
 
 ## Building for Web (WASM + WebGL)
 
+Even if you installed Odin using Homebrew you must run `./deps.sh` once to fetch
+the vendor libraries used for WebAssembly builds.
+
 To build the same project for the web you can target `js_wasm32` and produce a `.wasm` file along with the runtime JavaScript helper:
 
 ```bash

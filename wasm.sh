@@ -14,8 +14,13 @@ fi
 ODIN_ROOT=$("$ODIN" root)
 
 # Copy the vendor raylib WASM library expected by odin.js
+# Prefer the one fetched by deps.sh in odin-bin so Homebrew installs work
 mkdir -p wasm
-cp "$ODIN_ROOT/vendor/raylib/wasm/libraylib.a" wasm/
+RAYLIB_WASM=$(find odin-bin -path '*/vendor/raylib/wasm/libraylib.a' 2>/dev/null | head -n 1)
+if [ -z "$RAYLIB_WASM" ]; then
+    RAYLIB_WASM="$ODIN_ROOT/vendor/raylib/wasm/libraylib.a"
+fi
+cp "$RAYLIB_WASM" wasm/
 
 # Copy the Odin runtime JavaScript helper next to the wasm file
 cp "$ODIN_ROOT/core/sys/wasm/js/odin.js" .
