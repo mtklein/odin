@@ -29,6 +29,8 @@ To build the same project for the web you can target `js_wasm32` and produce a `
 ```bash
 odin build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm
 cp $(odin root)/core/sys/wasm/js/odin.js .
+mkdir -p wasm
+cp $(odin root)/vendor/raylib/wasm/libraylib.a wasm/
 ```
 
 Then create a minimal HTML file that loads `odin.js` and your `ball_bounce.wasm` and open it with a web browser that supports WebGL.

@@ -10,8 +10,14 @@ fi
 # Build the example to WebAssembly
 "$ODIN" build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm
 
-# Copy the Odin runtime JavaScript helper next to the wasm file
+# Discover Odin root path for runtime resources
 ODIN_ROOT=$("$ODIN" root)
+
+# Copy the vendor raylib WASM library expected by odin.js
+mkdir -p wasm
+cp "$ODIN_ROOT/vendor/raylib/wasm/libraylib.a" wasm/
+
+# Copy the Odin runtime JavaScript helper next to the wasm file
 cp "$ODIN_ROOT/core/sys/wasm/js/odin.js" .
 
 # Generate a minimal HTML file to load the wasm module
