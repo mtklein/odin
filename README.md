@@ -27,9 +27,15 @@ Adjust the target architecture (`macos_arm64` or `macos_amd64`) depending on you
 To build the same project for the web you can target `js_wasm32` and produce a `.wasm` file along with the runtime JavaScript helper:
 
 ```bash
-odin build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm -no-entry
+odin build ball_bounce -target:js_wasm32 -out:ball_bounce.wasm -no-entry-point
 cp $(odin root)/core/sys/wasm/js/odin.js .
 ```
 
 Then create a minimal HTML file that loads `odin.js` and your `ball_bounce.wasm` and open it with a web browser that supports WebGL.
+
+Alternatively you can run the provided helper script which performs all of the above steps and writes the HTML file automatically:
+
+```bash
+./wasm.sh
+```
 
